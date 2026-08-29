@@ -15,9 +15,9 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      AWS_REGION: {{ secrets.AWS_REGION }}
-      S3_BUCKET: {{ secrets.S3_BUCKET }}
-      AWS_ACCOUNT_ID: {{ secrets.AWS_ACCOUNT_ID }}
+      AWS_REGION: ${{ secrets.AWS_REGION }}
+      S3_BUCKET: ${{ secrets.S3_BUCKET }}
+      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
 
     steps:
       - name: Checkout repository
@@ -43,4 +43,10 @@ jobs:
 
       - name: Sync build output to S3
         run: |
-          aws s3 sync dist/ s3://${{ env.S3_BUCKET }}/ --delete
+          aws s3 sync dist/ s3://${{ env.S3_BUCKET }}/ \
+            --delete \
+            --exclude "index.html" \
+            --cache-control "public,max-age=31536000,immutable"
+
+          aws s3 cp dist/index.html s3://${{ env.S3_BUCKET }}/index.html \
+            --cache-control "no-cache,no-store,must-revalidate"
