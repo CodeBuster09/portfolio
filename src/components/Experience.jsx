@@ -5,10 +5,13 @@ import { experience } from '../data/content'
 export default function Experience() {
   return (
     <section id="experience" className="section experience">
-      <span className="section-index">02</span>
+      <span className="section-index">Where I&apos;ve Worked</span>
       <Reveal as="h2" className="section-heading">
         Experience
       </Reveal>
+      <p className="section-sub">
+        Shipping production software across e-commerce storefronts and merchant tooling.
+      </p>
 
       <div className="exp-list">
         {experience.map((job, i) => (

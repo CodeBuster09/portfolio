@@ -6,10 +6,13 @@ import { IconGitHub, IconArrowUpRight } from './Icons'
 export default function Projects() {
   return (
     <section id="work" className="section projects">
-      <span className="section-index">03</span>
+      <span className="section-index">What I&apos;ve Built</span>
       <Reveal as="h2" className="section-heading">
         Selected Work
       </Reveal>
+      <p className="section-sub">
+        Full-stack side projects taken from first commit to something people can actually use.
+      </p>
 
       <div className="bento">
         {projects.map((project, i) => (

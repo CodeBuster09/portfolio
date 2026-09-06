@@ -5,18 +5,33 @@ export function useActiveSection(ids) {
 
   useEffect(() => {
     const sections = ids.map((id) => document.getElementById(id)).filter(Boolean)
+    if (!sections.length) return
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(entry.target.id)
-        })
-      },
-      { rootMargin: '-40% 0px -55% 0px', threshold: 0 },
-    )
+    const update = () => {
+      const doc = document.documentElement
 
-    sections.forEach((s) => observer.observe(s))
-    return () => observer.disconnect()
+      // The last section is shorter than the marker line can reach, so the
+      // bottom of the page always belongs to it.
+      if (window.scrollY + window.innerHeight >= doc.scrollHeight - 2) {
+        setActive(sections[sections.length - 1].id)
+        return
+      }
+
+      const line = window.scrollY + window.innerHeight * 0.4
+      let current = sections[0].id
+      for (const section of sections) {
+        if (section.getBoundingClientRect().top + window.scrollY <= line) current = section.id
+      }
+      setActive(current)
+    }
+
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    window.addEventListener('resize', update)
+    return () => {
+      window.removeEventListener('scroll', update)
+      window.removeEventListener('resize', update)
+    }
   }, [ids])
 
   return active

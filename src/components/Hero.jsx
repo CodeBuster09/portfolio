@@ -6,10 +6,6 @@ export default function Hero() {
       <div className="hero-blob" aria-hidden="true" />
 
       <div className="hero-inner">
-        <p className="hero-chip">
-          <span className="hero-chip-dot" /> Open to new opportunities
-        </p>
-
         <h1 className="hero-title">
           <span className="hero-title-row">Shreyansh</span>
           <span className="hero-title-row hero-title-row--accent">

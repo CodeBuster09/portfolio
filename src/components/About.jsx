@@ -5,12 +5,15 @@ import { profile } from '../data/content'
 export default function About() {
   return (
     <section id="about" className="section about">
-      <span className="section-index">01</span>
+      <span className="section-index">Who I Am</span>
 
       <div className="about-grid">
         <Reveal as="h2" className="section-heading">
-          About
+          About Me
         </Reveal>
+        <p className="section-sub">
+          A quick look at what I build, where I&apos;ve built it, and how I like to work.
+        </p>
 
         <div className="about-copy">
           <Reveal>

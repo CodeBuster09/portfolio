@@ -12,9 +12,11 @@ const NAV_ITEMS = [
   { id: 'contact', label: 'Contact' },
 ]
 
+const SECTION_IDS = ['home', ...NAV_ITEMS.map((i) => i.id)]
+
 export default function Nav() {
   const [open, setOpen] = useState(false)
-  const active = useActiveSection(['home', ...NAV_ITEMS.map((i) => i.id)])
+  const active = useActiveSection(SECTION_IDS)
   const [theme, toggleTheme] = useTheme()
 
   const handleNavClick = () => setOpen(false)

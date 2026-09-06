@@ -4,10 +4,13 @@ import { skillGroups, education, achievements } from '../data/content'
 export default function Skills() {
   return (
     <section id="skills" className="section skills">
-      <span className="section-index">04</span>
+      <span className="section-index">Toolkit</span>
       <Reveal as="h2" className="section-heading">
         Skills &amp; Education
       </Reveal>
+      <p className="section-sub">
+        The languages, frameworks, and tools I reach for — and where I learned them.
+      </p>
 
       <div className="skills-grid">
         {skillGroups.map((group, i) => (
